@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF8">
+	<style>
+		body {
+			font-family: Helvetica;
+			padding: 10px;
+			font-size: 100%;
+		}
+
+		.var {
+			color: orange;
+		}
+
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		th {
+			font-size: 1.2em;
+		}
+
+		th, td {
+			padding: 10px;
+			text-align: left;
+			border-bottom: 1px solid lightgray;
+		}
+
+		.tsh {
+			text-align: center;
+			font-weight: bold;
+		}
+
+		td:nth-child(1) { /* HTTP Method */ 
+			font-size: 1.1em;
+		}
+
+		td:nth-child(2) { /* URL */ 
+			font-family: monospace;
+		}
+
+		td:nth-child(3) { /* parameter */ 
+			font-family: monospace;
+			font-style: italic;
+		}
+	</style>
+	<title>Web Apes API</title>
+</head>
+
+<body>
+	<h1>Web Apes Unit 12 Application Package Interface</h1>
+	<h2>API Method Description</h2>
+	<p>The following methods were implemented this week. More methods may be added in the future if necessary.</p>
+	<table style="width:100%">
+		<tr>
+			<th></th>
+			<th>HTTP Method</th>
+			<th>URL</th>
+			<th>Body Parameters</th>
+			<th>Description</th>
+		</tr>
+		
+
+		<tr>
+			<td class="tsh" rowspan="9">Users</td>
+		</tr>
+		<tr>
+			<td>GET</td>
+			<td>/api/users</td>
+			<td></td>
+			<td>Get a list of user IDs and usernames</td>
+		</tr>
+		<tr>
+			<td>POST</td>
+			<td>/api/users</td>
+			<td>username, password, email</td>
+			<td>Create a new user</td>
+		</tr>
+		<tr>
+			<td>GET</td>
+			<td>/api/users/:userid</td>
+			<td></td>
+			<td>Get details on a single user</td>
+		</tr>
+		<tr>
+			<td>PUT</td>
+			<td>/api/users/:userid</td>
+			<td>username, password, email</td>
+			<td>Update an existing user</td>
+		</tr>
+		<tr>
+			<td>DELETE</td>
+			<td>/api/users/:userid</td>
+			<td></td>
+			<td>Delete a single user. Deletes all cards and offers associated with the user.</td>
+		</tr>
+		<tr>
+			<td>GET</td>
+			<td>/api/users/:userid/cards</td>
+			<td></td>
+			<td>Get a list of a user's cards</td>
+		</tr>
+		<tr>
+			<td>GET</td>
+			<td>/api/users/:userid/offers/buying</td>
+			<td></td>
+			<td>Get a list of a user's offers where they are buying</td>
+		</tr>
+		<tr>
+			<td>GET</td>
+			<td>/api/users/:userid/offers/selling</td>
+			<td></td>
+			<td>Get a list of a user's offers where they are selling</td>
+		</tr>
+
+
+		<tr>
+			<td class="tsh" rowspan="8">Cards</td>
+		</tr>
+		<tr>
+			<td>GET</td>
+			<td>/api/cards</td>
+			<td></td>
+			<td>Get a list of cards</td>
+		</tr>
+		<tr>
+			<td>POST</td>
+			<td>/api/cards</td>
+			<td>name, description, owner_id</td>
+			<td>Create a new card</td>
+		</tr>
+		<tr>
+			<td>GET</td>
+			<td>/api/cards/:cardid</td>
+			<td></td>
+			<td>Get details on a single card</td>
+		</tr>
+		<tr>
+			<td>PUT</td>
+			<td>/api/cards</td>
+			<td>name, description, owner_id</td>
+			<td>Update an existing card</td>
+		</tr>
+		<tr>
+			<td>DELETE</td>
+			<td>/api/cards/:cardid</td>
+			<td></td>
+			<td>Delete a single card. Deletes all offers associated with the card.</td>
+		</tr>
+		<tr>
+			<td>GET</td>
+			<td>/cards/:cardid/offers/requested</td>
+			<td></td>
+			<td>Get a list of a card's offers where it is requested</td>
+		</tr>
+		<tr>
+			<td>GET</td>
+			<td>/cards/:cardid/offers/offered</td>
+			<td></td>
+			<td>Get a list of a card's offers where it is offered</td>
+		</tr>
+
+		<tr>
+			<td class="tsh" rowspan="6">Offers</td>
+		</tr>
+		<tr>
+			<td>GET</td>
+			<td>/api/offers</td>
+			<td></td>
+			<td>Get a list of offers</td>
+		</tr>
+		<tr>
+			<td>POST</td>
+			<td>/api/offers</td>
+			<td>buyer_id, seller_id, requested_cards (single or array), offered_cards (single or array)</td>
+			<td>Create a new offer</td>
+		</tr>
+		<tr>
+			<td>GET</td>
+			<td>/api/offers/:offerid</td>
+			<td></td>
+			<td>Get details on a single offer</td>
+		</tr>
+		<tr>
+			<td>DELETE</td>
+			<td>/api/offers/:offerid</td>
+			<td></td>
+			<td>Delete a single offer</td>
+		</tr>
+		<tr>
+			<td>POST</td>
+			<td>/api/offers/:offerid/accept</td>
+			<td></td>
+			<td>Accept an offer. This transfers ownership of the specified cards and deletes the offer.</td>
+		</tr>
+	</table>
+
+	<h2>API Script</h2>
+	<p>Please note, this "script" was generated using the built in variable functionality in Nodemon. Wherever a
+		<span class="var">{{variable}}</span> is shown, Nodemon is using a stored value. See the last image for the values of each variable.</p>
+	<hr>
+
+	<h3>GET list of users</h3>
+	<img src="./screenshots/get_list_users.PNG" alt="List of users">
+	<hr>
+
+	<h3>POST new user 1</h3>
+	<p>HTTP Status 201 Created. User ID stored in
+		<span class="var">{{test_user_id_1}}</span>
+	</p>
+	<img src="./screenshots/create_user_1.PNG" alt="Create user 1">
+	<hr>
+
+	<h3>POST new user 2</h3>
+	<p>HTTP Status 201 Created. User ID stored in
+		<span class="var">{{test_user_id_2}}</span>
+	</p>
+	<img src="./screenshots/create_user_2.PNG" alt="Create user 2">
+	<hr>
+
+	<h3>GET list of users after creation</h3>
+	<img src="./screenshots/get_list_users_after_create.PNG" alt="List of users after creation">
+	<hr>
+
+	<h3>GET list of cards</h3>
+	<img src="./screenshots/get_list_cards.PNG" alt="List of cards">
+	<hr>
+
+	<h3>POST new card 1</h3>
+	<p>HTTP Status 201 Created. Card ID stored in
+		<span class="var">{{test_card_id_1}}</span>
+	</p>
+	<img src="./screenshots/create_card_1.PNG" alt="Create card 1">
+	<hr>
+
+	<h3>POST new card 2</h3>
+	<p>HTTP Status 201 Created. Card ID stored in
+		<span class="var">{{test_card_id_2}}</span>
+	</p>
+	<img src="./screenshots/create_card_2.PNG" alt="Create card 2">
+	<hr>
+
+	<h3>GET list of cards after creation</h3>
+	<img src="./screenshots/get_list_cards_after_create.PNG" alt="List of cards after create">
+	<hr>
+
+	<h3>PUT Updated Card</h3>
+	<p>HTTP Status 200 OK, all fields changed except owner_id</p>
+	<img src="./screenshots/edit_card.PNG" alt="Update card">
+	<hr>
+
+	<h3>GET single card details</h3>
+	<img src="./screenshots/get_single_card.PNG" alt="Single card details">
+	<hr>
+
+	<h3>GET user's owned cards</h3>
+	<img src="./screenshots/get_list_user_cards.PNG" alt="User's owned cards">
+	<hr>
+
+	<h3>GET list of offers</h3>
+	<img src="./screenshots/get_list_offers.PNG" alt="List of offers">
+	<hr>
+
+	<h3>POST new offer</h3>
+	<p>HTTP Status 201 Created. Offer ID stored in
+		<span class="var">{{test_offer_id}}</span>
+	</p>
+	<img src="./screenshots/create_offer.PNG" alt="Create card 1">
+	<hr>
+
+	<h3>GET list of offers after creation</h3>
+	<img src="./screenshots/get_list_offers_after_create.PNG" alt="List of offers after creation">
+	<hr>
+
+	<h3>GET list of users' buying offers</h3>
+	<p>That is, get a list of offers where the user is requesting/buying cards</p>
+	<img src="./screenshots/get_offers_buying.PNG" alt="List of buying offers">
+	<hr>
+
+	<h3>GET list of users' selling offers</h3>
+	<p>That is, get a list of offers where the user has been offered a trade / is selling</p>
+	<img src="./screenshots/get_offers_selling.PNG" alt="List of selling offers">
+	<hr>
+
+	<h3>GET single offer details</h3>
+	<img src="./screenshots/get_single_offer.PNG" alt="Single offer details">
+	<hr>
+
+	<h3>PUT accept offer</h3>
+	<p>HTTP Status 200 OK, see further images for details of this action</p>
+	<img src="./screenshots/accept_offer.PNG" alt="Single card details">
+	<hr>
+
+	<h3>GET list of cards after accepting offer</h3>
+	<p>Notice that the owner_id for the cards has changed</p>
+	<img src="./screenshots/get_list_cards_after_accepting_offer.PNG" alt="List of cards after accepting offer">
+	<hr>
+
+	<h3>GET list of offers after accepting offer</h3>
+	<p>The only offer has been closed / deleted</p>
+	<img src="./screenshots/get_list_offers_after_accepting_offer.PNG" alt="List of offers after accepting offer">
+	<hr>
+
+	<h3>DELETE card</h3>
+	<p>This also deletes any offers associated with the card</p>
+	<img src="./screenshots/delete_card.PNG" alt="Delete card">
+	<hr>
+
+	<h3>DELETE offer</h3>
+	<img src="./screenshots/delete_offer.PNG" alt="Delete offer">
+	<hr>
+
+	<h3>DELETE user</h3>
+	<p>This also deletes any cards associated with the user, and any offers associated with the cards</p>
+	<img src="./screenshots/delete_card.PNG" alt="Delete card">
+	<hr>
+
+	<h3>Generate Nodemon Environment</h3>
+	<p>For reference</p>
+	<img src="./screenshots/environment.png" alt="Environment">
+	<hr>
+</body>
+
+</html>

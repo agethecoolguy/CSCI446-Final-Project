@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title= title
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    .navbar.navbar-default.navbar-fixed-top
+      a.navbar-brand(href='/') Witty Card Pun
+
+    #content.container
+      block content
+
+    footer.navbar-fixed-bottom
+      p &copy 2018 Witty Card Pun
+      small May you find a witty card pun to put here.
+
+    script(src='/javascripts/jquery-3.3.1.min.js')
+    script(src='/bootstrap/js/bootstrap.min.js')
