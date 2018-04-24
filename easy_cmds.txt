@@ -1,0 +1,3 @@
+// Imports collectionsLoad.json file as collection 'cards' in database 'Barter'
+// collectionsLoad.json must be in MongoDB/Server/3.6/
+mongoimport --db Barter --collection cards --file ../collectionsLoad.json

@@ -1,0 +1,16 @@
+extends layout
+
+block content
+	#banner.page-header
+		.row
+			.col-xs-12
+				h1=pageHeader.title
+					small &nbsp;#{content}
+		.row
+			.col-xs-12
+				.error= message
+				.row.list-group
+					each card in cards
+						.col-xs-12.list-group-item
+							h4
+								a(href="/card/" + card._id) #{card.title} - Created by '#{card.creator}'

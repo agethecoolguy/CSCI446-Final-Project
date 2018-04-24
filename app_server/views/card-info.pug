@@ -1,0 +1,19 @@
+extends layout
+
+include ./_includes/sharedHTMLfunctions.pug
+
+block content
+	.row.page-header
+		.col-lg-12
+			h1= pageHeader.title
+				small &nbsp;#{pageHeader.strapline}
+	.row
+		.col-xs-12.col-md-12
+			.row
+				.col-xs-12.col-sm-12
+					.panel.panel-primary
+						.panel-heading
+							h2.panel-title #{sectionInfo.cardDetails}
+						.panel-body
+							p Title: #{card.title}
+							p Description: #{card.description}
