@@ -5,9 +5,9 @@ var ctrlCards = require('../controllers/cards');
 
 /* Card pages */
 router.get('/', ctrlCards.homelist);
-//router.get('/cards/:cardid', ctrlCards.cardDetail);
-//router.get('/cards/:cardid/barter', ctrlCards.cardBarter);
-//router.get('/cards/new', ctrlCards.cardNew);
+router.get('/cards/:cardid', ctrlCards.cardDetail);
+router.get('/cards/:cardid/barter', ctrlCards.cardBarter);
+router.get('/cards/new', ctrlCards.cardNew);
 
 /* User pages */
 //router.get('/users/:userid', ctrlUser.userDetail);

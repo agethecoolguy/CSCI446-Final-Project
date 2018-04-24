@@ -13,8 +13,7 @@ module.exports.homelist = function(req, res) {
 	requestOptions = {
 		url: apiOptions.server + path,
 		method: "GET",
-		json: {},
-		qs: {}
+		json: {}
 	};
 	console.log("url " + requestOptions.url);
 	request (
@@ -25,8 +24,72 @@ module.exports.homelist = function(req, res) {
 	);
 };
 
-/* card info */
-var getCardInfo = function(req, res, callback) {
+/* GET 'Card Detail' page */
+module.exports.cardDetail = function(req, res) {
+	getCardDetail(req, res, function(req, res, responseData) {
+		renderDetailPage(req, res, responseData);
+	});
+};
+
+/* GET 'New Card' form */
+module.exports.cardNew = function(req, res) {
+	var requestOptions, path;
+	path = '/api/cards/new';
+	requestOptions = {
+		url: apiOptions.server + path,
+		method: "GET",
+		json: {}
+	};
+	console.log("url " + requestOptions.url);
+	request (
+		requestOptions,
+		function(err, response, body) {
+			renderCardForm(req, res, body);
+		}
+	);
+};
+
+/* POST 'New Card' form */
+module.exports.doCardNew = function(req, res) {
+	var requestOptions, path, postdata;
+	path = "/api/cards/";
+	postdata = {
+		title: req.body.title,
+		description: req.body.description,
+		creator: req.body.creator,
+		image: req.body.image
+	};
+	requestOptions = {
+		url: apiOptions.server + path,
+		method: "POST",
+		json: postdata
+	};
+	if (!postdata.title || !postdata.creator) {
+		res.redirect('/cards/new?err=val');
+	} else {
+		request(
+			requestOptions,
+			function(err, response, body) {
+				if (response.statusCode === 201) {
+					res.redirect('/cards/' + postdata._id);
+				} else if (response.statusCode === 400 && body.name && body.name === "ValidationError") {
+					res.redirect('/cards/new?err=val');
+				} else {
+					_showError(req, res, response.statusCode);
+				}
+			}
+		);
+	}
+};
+
+/* GET 'Barter' form */
+module.exports.cardBarter = function(req, res) {
+	getCardDetail(req, res, function(req, res, responseData) {
+		renderBarterForm(req, res, responseData);
+	});
+}
+
+var getCardDetail = function(req, res, callback) {
 	var requestOptions, path;
 	path = "/api/cards/" + req.params.cardid;
 	requestOptions = {
@@ -64,5 +127,54 @@ var renderHomepage = function(req, res, responseBody) {
 		},
 		cards: responseBody,
 		message: message
+	});
+};
+
+var renderDetailPage = function(req, res, responseBody) {
+	res.render('card-info', {
+		title: 'Card Info',
+		pageHeader: {
+			title: 'Card Info',
+			strapline: "'" + responseBody.title + "' by '" + responseBody.creator + "'"
+		},
+		card: responseBody
+	});
+};
+
+var renderCardForm = function(req, res, responseBody) {
+	res.render('card-form', {
+		title: 'Add Card',
+		pageHeader: {
+			title: 'Add Card'
+		},
+		error: req.query.err,
+		card: responseBody
+	});
+};
+
+var renderBarterForm = function(req, res, responseBody) {
+	res.render('barter-form', {
+		title: 'Barter for Card',
+		pageHeader: {
+			title: 'Barter for Card'
+		},
+		error: req.query.err,
+		card: responseBody
+	});
+};
+
+var _showError = function(req, res, status) {
+	var title, content;
+	if (status === 404) {
+		title = "404, page not found";
+		content = "Wo bist das page?";
+	} else {
+		title = status + ", something's gone wrong";
+		content = "We might've screwed up here. Sorry dude."
+	}
+	res.status(status);
+	res.render('generic-text', {
+		title: title,
+		content: content
 	});
 };

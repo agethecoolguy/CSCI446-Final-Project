@@ -1,7 +1,5 @@
 extends layout
 
-include ./_includes/sharedHTMLfunctions.pug
-
 block content
 	.row.page-header
 		.col-lg-12
@@ -12,8 +10,9 @@ block content
 			.row
 				.col-xs-12.col-sm-12
 					.panel.panel-primary
-						.panel-heading
-							h2.panel-title #{sectionInfo.cardDetails}
 						.panel-body
 							p Title: #{card.title}
 							p Description: #{card.description}
+							p Creator: #{card.creator}
+		a.btn.btn-info(href='/cards/' + card._id + '/barter') Barter
+		<br /><br />
