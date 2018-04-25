@@ -24,12 +24,13 @@ module.exports.cardsCreate = function (req, res) {
     cardModel.create({
         name: req.body.name,
         description: req.body.description,
-        owner_id: req.body.owner_id
+        creator: req.body.creator
     }, function (err, card) {
         if (err) {
             sendJsonResponse(res, 400, err);
         } else {
-            sendJsonResponse(res, 201, card);
+            doCardNew(req, res, card);
+			//sendJsonResponse(res, 201, card);
         }
     });
 };
@@ -79,7 +80,7 @@ module.exports.cardsUpdateOne = function (req, res) {
                 }
                 card.name = req.body.name;
                 card.description = req.body.description;
-                card.owner_id = req.body.owner_id;
+                card.creator = req.body.creator;
                 card.save(function (err, card) {
                     if (err) {
                         sendJsonResponse(res, 404, err);

@@ -34,7 +34,7 @@ module.exports.cardDetail = function(req, res) {
 /* GET 'New Card' form */
 module.exports.cardNew = function(req, res) {
 	var requestOptions, path;
-	path = '/api/cards/new';
+	path = '/api/card/new';
 	requestOptions = {
 		url: apiOptions.server + path,
 		method: "GET",
@@ -57,7 +57,7 @@ module.exports.doCardNew = function(req, res) {
 		title: req.body.title,
 		description: req.body.description,
 		creator: req.body.creator,
-		image: req.body.image
+		//image: req.body.image
 	};
 	requestOptions = {
 		url: apiOptions.server + path,
@@ -147,8 +147,7 @@ var renderCardForm = function(req, res, responseBody) {
 		pageHeader: {
 			title: 'Add Card'
 		},
-		error: req.query.err,
-		card: responseBody
+		error: req.query.err
 	});
 };
 
