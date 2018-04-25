@@ -22,6 +22,7 @@ module.exports.usersList = function (req, res) {
 
 module.exports.usersCreate = function (req, res) {
     userModel.create({
+		uid: req.body.uid,
         pass: req.body.pass,
         bio: req.body.bio
     }, function (err, user) {
@@ -76,6 +77,7 @@ module.exports.usersUpdateOne = function (req, res) {
                     sendJsonResponse(res, 400, err);
                     return;
                 }
+				user.uid = req.body.uid;
                 user.pass = req.body.pass;
                 user.bio = req.body.bio;
                 user.save(function (err, user) {
