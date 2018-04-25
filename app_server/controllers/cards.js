@@ -56,7 +56,7 @@ module.exports.doCardNew = function(req, res) {
 	postdata = {
 		title: req.body.title,
 		description: req.body.description,
-		creator: req.body.creator,
+		creator: req.body.creator
 		//image: req.body.image
 	};
 	requestOptions = {
@@ -84,14 +84,36 @@ module.exports.doCardNew = function(req, res) {
 
 /* GET 'Barter' form */
 module.exports.cardBarter = function(req, res) {
-	getCardDetail(req, res, function(req, res, responseData) {
+	getUserInfo(req, res, function(req, res, responseData) {
 		renderBarterForm(req, res, responseData);
 	});
 }
 
+/* Retrieves card information */
 var getCardDetail = function(req, res, callback) {
 	var requestOptions, path;
 	path = "/api/cards/" + req.params.cardid;
+	requestOptions = {
+		url: apiOptions.server + path,
+		method: "GET",
+		json: {}
+	};
+	request (
+		requestOptions,
+		function(err, response, body) {
+			if (response.statusCode === 200) {
+				callback(req, res, body);
+			} else {
+				_showError(req, res, response.statusCode);
+			}
+		}
+	);
+};
+
+/* Retrieves user information */
+var getUserInfo = function(req, res, callback) {
+	var requestOptions, path;
+	path = "/api/users/" + req.params.userid;
 	requestOptions = {
 		url: apiOptions.server + path,
 		method: "GET",
@@ -158,7 +180,8 @@ var renderBarterForm = function(req, res, responseBody) {
 			title: 'Barter for Card'
 		},
 		error: req.query.err,
-		card: responseBody
+		cards: responseBody.cards,
+		user: responseBody
 	});
 };
 

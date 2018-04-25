@@ -12,13 +12,13 @@ block content
 		.col-xs-12
 			form.form-horizontal(action="", method="post", role="form")
 				- if (error == "val")
-					.alert.alert-danger(role="alert") All fields are required. Try again.
+					.alert.alert-danger(role="alert") Check Required fields and try again.
 				.form-group
 					label.col-xs-10.col-sm-4.control-label(for="bio") Bio
 					.col-xs-12.col-sm-10
 						input#bio.form-control(type="text" placeholder="User Bio" name="bio")
 				.form-group
-					label.col-xs-10.col-sm-4.control-label(for="pass") Password
+					label.col-xs-10.col-sm-4.control-label(for="pass") Password*
 					.col-xs-12.col-sm-10
 						input#pass.form-control(type="text" placeholder="User Password" name="pass")
 					

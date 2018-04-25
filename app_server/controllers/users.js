@@ -67,7 +67,7 @@ module.exports.doUserNew = function(req, res) {
 			requestOptions,
 			function(err, response, body) {
 				if (response.statusCode === 201) {
-					res.redirect('/users/');
+					res.redirect('/users');
 				} else if (response.statusCode === 400 && body.name && body.name === "ValidationError") {
 					res.redirect('/user/new?err=val');
 				} else {
