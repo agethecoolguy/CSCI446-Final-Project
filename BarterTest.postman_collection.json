@@ -1,0 +1,980 @@
+{
+	"info": {
+		"_postman_id": "f657775c-b23f-462b-a6b0-336639441451",
+		"name": "Barter Test",
+		"description": "Testing Bartering API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get list of users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "be54a0ec-aaf9-4a84-b0b8-8e0b0436ea1b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create user 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3ff29a10-2ce7-45d7-a00c-ba68d843de35",
+						"type": "text/javascript",
+						"exec": [
+							"var test_user_id = pm.response.json()._id;",
+							"pm.globals.set(\"test_user_id_0\", test_user_id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "bob",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "bob123",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "bob@realmail.com",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create user 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4e8ab66b-6694-4502-a804-3d071c42be5c",
+						"type": "text/javascript",
+						"exec": [
+							"var test_user_id = pm.response.json()._id;",
+							"pm.globals.set(\"test_user_id_1\", test_user_id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "dylan",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "dylan123",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "dylan@realmail.com",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get list of users after create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "40d2e597-9f30-4fe7-b075-b55a20fb52f6",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get list of cards",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2d9e78bd-8868-4788-8c16-e336259296df",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/api/cards",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"cards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new card 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ffbe141c-043a-424a-88c3-1c9847f460d9",
+						"type": "text/javascript",
+						"exec": [
+							"var test_card_id = pm.response.json()._id;",
+							"pm.globals.set(\"test_card_id_0\", test_card_id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "EDays",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Fun times for all!",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "owner_id",
+							"value": "{{test_user_id_0}}",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/cards",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"cards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new card 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "53a55266-d18d-4df8-be71-7b0096baf539",
+						"type": "text/javascript",
+						"exec": [
+							"var test_card_id = pm.response.json()._id;",
+							"pm.globals.set(\"test_card_id_1\", test_card_id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Snow Day",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "No school woohoo!",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "owner_id",
+							"value": "{{test_user_id_1}}",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/cards",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"cards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get list of cards after create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ec61ea5f-6efd-4318-9fe7-6c0d72ea434e",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/api/cards",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"cards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "53a55266-d18d-4df8-be71-7b0096baf539",
+						"type": "text/javascript",
+						"exec": [
+							"var test_card_id = pm.response.json()._id;",
+							"pm.globals.set(\"test_card_id_1\", test_card_id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Cancelled Snow Day",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "The administration just pranked you!",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "owner_id",
+							"value": "{{test_user_id_1}}",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/cards/{{test_card_id_1}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"cards",
+						"{{test_card_id_1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get single card details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/api/cards/{{test_card_id_0}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"cards",
+						"{{test_card_id_0}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get user's cards",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/api/users/{{test_user_id_1}}/cards",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"{{test_user_id_1}}",
+						"cards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get list of offers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b8bb262-f326-448e-8802-92b0acfe871a",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/api/offers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"offers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new offer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a6addf01-f1fe-45db-a364-66b10344ea05",
+						"type": "text/javascript",
+						"exec": [
+							"var test_offer_id = pm.response.json()._id;",
+							"pm.globals.set(\"test_offer_id\", test_offer_id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "buyer_id",
+							"value": "{{test_user_id_0}}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "seller_id",
+							"value": "{{test_user_id_1}}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "offering_cards",
+							"value": "{{test_card_id_0}}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "requesting_cards",
+							"value": "{{test_card_id_1}}",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/offers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"offers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get list of offers after create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b8bb262-f326-448e-8802-92b0acfe871a",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/api/offers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"offers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get user's buying offers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/api/users/{{test_user_id_0}}/offers/buying",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"{{test_user_id_0}}",
+						"offers",
+						"buying"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get user's selling offers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/api/users/{{test_user_id_1}}/offers/selling",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"{{test_user_id_1}}",
+						"offers",
+						"selling"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Single Offer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/api/offers/{{test_offer_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"offers",
+						"{{test_offer_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Accept Offer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/api/offers/{{test_offer_id}}/accept",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"offers",
+						"{{test_offer_id}}",
+						"accept"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get list of cards after accepting offer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ec61ea5f-6efd-4318-9fe7-6c0d72ea434e",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/api/cards",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"cards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get list of offers after accepting offer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b8bb262-f326-448e-8802-92b0acfe871a",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/api/offers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"offers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete card 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9a3508ec-2a9e-49b3-9b2f-83bf7b7128dd",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/api/cards/{{test_card_id_0}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"cards",
+						"{{test_card_id_0}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete card 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9a3508ec-2a9e-49b3-9b2f-83bf7b7128dd",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/api/cards/{{test_card_id_1}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"cards",
+						"{{test_card_id_1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete offer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9a3508ec-2a9e-49b3-9b2f-83bf7b7128dd",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/api/offers/{{test_offer_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"offers",
+						"{{test_offer_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete user 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9a3508ec-2a9e-49b3-9b2f-83bf7b7128dd",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/api/users/{{test_user_id_0}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"{{test_user_id_0}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete user 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9a3508ec-2a9e-49b3-9b2f-83bf7b7128dd",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/api/users/{{test_user_id_1}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"{{test_user_id_1}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
