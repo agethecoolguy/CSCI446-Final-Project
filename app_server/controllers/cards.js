@@ -7,7 +7,7 @@ var apiOptions = {
 }*/
 
 /* GET homepage */
-module.exports.homelist = function(req, res) {
+module.exports.cardlist = function(req, res) {
 	var requestOptions, path;
 	path = '/api/cards';
 	requestOptions = {

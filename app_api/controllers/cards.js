@@ -22,7 +22,7 @@ module.exports.cardsList = function (req, res) {
 
 module.exports.cardsCreate = function (req, res) {
     cardModel.create({
-        name: req.body.name,
+        title: req.body.title,
         description: req.body.description,
         creator: req.body.creator
     }, function (err, card) {
@@ -78,7 +78,7 @@ module.exports.cardsUpdateOne = function (req, res) {
                     sendJsonResponse(res, 400, err);
                     return;
                 }
-                card.name = req.body.name;
+                card.title = req.body.title;
                 card.description = req.body.description;
                 card.creator = req.body.creator;
                 card.save(function (err, card) {

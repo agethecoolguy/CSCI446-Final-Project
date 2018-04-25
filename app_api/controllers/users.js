@@ -4,7 +4,7 @@ var cardModel = mongoose.model('Card');
 var offerModel = mongoose.model('Offer');
 
 module.exports.usersList = function (req, res) {
-    userModel.find({}, { password: 0, email: 0 }, function (err, users) {
+    userModel.find({}, { pass: 0, bio: 0 }, function (err, users) {
         var usersList = [];
         users.forEach(function (user) {
             usersList.push(user);
@@ -22,9 +22,8 @@ module.exports.usersList = function (req, res) {
 
 module.exports.usersCreate = function (req, res) {
     userModel.create({
-        username: req.body.username,
-        password: req.body.password,
-        email: req.body.email
+        pass: req.body.pass,
+        bio: req.body.bio
     }, function (err, user) {
         if (err) {
             sendJsonResponse(res, 400, err);
@@ -77,9 +76,8 @@ module.exports.usersUpdateOne = function (req, res) {
                     sendJsonResponse(res, 400, err);
                     return;
                 }
-                user.username = req.body.username;
-                user.password = req.body.password;
-                user.email = req.body.email;
+                user.pass = req.body.pass;
+                user.bio = req.body.bio;
                 user.save(function (err, user) {
                     if (err) {
                         sendJsonResponse(res, 404, err);

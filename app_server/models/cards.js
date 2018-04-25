@@ -8,7 +8,7 @@ var cardSchema = new mongoose.Schema({
 });
 
 var userSchema = new mongoose.Schema({
-	uid: {type: Number, required: true, min: 100, max: 700},
+	pass: {type: String, required: true},
 	bio: {type: String, "default": "No Bio"},
 	cards: [cardSchema]
 });

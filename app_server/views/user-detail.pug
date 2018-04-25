@@ -1,0 +1,26 @@
+extends layout
+
+block content
+	.row.page-header
+		.col-lg-12
+			h1= pageHeader.title
+				small &nbsp;#{pageHeader.strapline}
+	.row
+		.col-xs-12.col-md-12
+			.row
+				.col-xs-12.col-sm-12
+					.panel.panel-primary
+						.panel-heading
+							h2.panel-title User Information
+						.panel-body
+							p ID: #{user._id}
+							p Bio: #{user.bio}
+					.panel.panel-primary
+						.panel-heading
+							h2.panel-title User Cards
+						.panel-body
+							if cards != undefined
+								each card in cards
+									.col-xs-12
+										p Title: #{card.title}
+										p Description: #{card.description}

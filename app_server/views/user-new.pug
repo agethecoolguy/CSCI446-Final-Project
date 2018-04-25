@@ -1,0 +1,24 @@
+extends layout
+
+block content
+	.row.page-header
+		.col-xs-12
+			h1= pageHeader.title
+	.row
+		.col-xs-12
+			p Your User ID will be generated upon successful completion of the below form.
+	.row
+		.col-xs-12
+			form.form-horizontal(action="", method="post", role="form")
+				- if (error == "val")
+					.alert.alert-danger(role="alert") All fields are required. Try again.
+				.form-group
+					label.col-xs-10.col-sm-4.control-label(for="bio") Bio
+					.col-xs-12.col-sm-10
+						input#bio.form-control(type="text" placeholder="User Bio" name="bio")
+				.form-group
+					label.col-xs-10.col-sm-4.control-label(for="pass") Password
+					.col-xs-12.col-sm-10
+						input#pass.form-control(type="text" placeholder="User Password" name="pass")
+					
+				button.btn.btn-default.pull-left Submit User

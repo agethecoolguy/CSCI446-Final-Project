@@ -10,17 +10,18 @@ block content
 				- if (error == "val")
 					.alert.alert-danger(role="alert") All fields are required. Try again.
 				.form-group
-					label.col-xs-10.col-sm-4.contorl-label(for="creator") Username
+					label.col-xs-10.col-sm-4.control-label(for="creator") Username
 					.col-xs-12.col-sm-10
 						input#creator.form-control(type="text" placeholder="Username" name="creator")
 				.form-group
 					label.col-xs-10.col-sm-4.control-label(for="title") Title
 					.col-xs-12.col-sm-10
 						input#title.form-control(type="text" placeholder="Title of Card" name="title")
-				.form-group
-					label.col-xs-10.col-sm-4.control-label(for="image") Image
-					.col-xs-12.col-sm-10
-						------------INSERT IMAGE SUBMISSION HERE-------------
+				//
+					.form-group
+						label.col-xs-10.col-sm-4.control-label(for="image") Image
+						.col-xs-12.col-sm-10
+							------------INSERT IMAGE SUBMISSION HERE-------------
 				.form-group
 					label.col-xs-10.col-sm-4.control-label(for="description") Description
 					.col-xs-12.col-sm-10
