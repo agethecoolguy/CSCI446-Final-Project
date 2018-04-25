@@ -65,7 +65,7 @@ module.exports.doCardNew = function(req, res) {
 		json: postdata
 	};
 	if (!postdata.title || !postdata.creator) {
-		res.redirect('/cards/new?err=val');
+		res.redirect('/card/new?err=val');
 	} else {
 		request(
 			requestOptions,
@@ -73,7 +73,7 @@ module.exports.doCardNew = function(req, res) {
 				if (response.statusCode === 201) {
 					res.redirect('/cards/' + postdata._id);
 				} else if (response.statusCode === 400 && body.name && body.name === "ValidationError") {
-					res.redirect('/cards/new?err=val');
+					res.redirect('/card/new?err=val');
 				} else {
 					_showError(req, res, response.statusCode);
 				}

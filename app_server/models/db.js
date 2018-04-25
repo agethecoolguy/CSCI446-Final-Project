@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var gracefulShutdown;
 
-var dbURI = 'mongodb://localhost/CourseOrganizer';
+var dbURI = 'mongodb://localhost/CSMCardBarter';
 if (process.env.NODE_ENV === 'production') {
     dbURI = process.env.MONGOLAB_URI;
 }
@@ -54,4 +54,4 @@ process.on('SIGTERM', function() {
     });
 });
 
-require('./courses');
+require('./cards');

@@ -8,6 +8,7 @@ router.get('/', ctrlCards.homelist);
 router.get('/cards/:cardid', ctrlCards.cardDetail);
 router.get('/cards/:cardid/barter', ctrlCards.cardBarter);
 router.get('/card/new', ctrlCards.cardNew);
+router.post('/card/new', ctrlCards.doCardNew);
 
 /* User pages */
 //router.get('/users/:userid', ctrlUser.userDetail);
