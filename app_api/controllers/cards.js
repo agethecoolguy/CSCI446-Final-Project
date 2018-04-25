@@ -22,15 +22,14 @@ module.exports.cardsList = function (req, res) {
 
 module.exports.cardsCreate = function (req, res) {
     cardModel.create({
-        title: req.body.title,
+        name: req.body.name,
         description: req.body.description,
-        creator: req.body.creator
+        owner_id: req.body.owner_id
     }, function (err, card) {
         if (err) {
             sendJsonResponse(res, 400, err);
         } else {
-            doCardNew(req, res, card);
-			//sendJsonResponse(res, 201, card);
+			sendJsonResponse(res, 201, card);
         }
     });
 };
@@ -78,9 +77,9 @@ module.exports.cardsUpdateOne = function (req, res) {
                     sendJsonResponse(res, 400, err);
                     return;
                 }
-                card.title = req.body.title;
+                card.name = req.body.name;
                 card.description = req.body.description;
-                card.creator = req.body.creator;
+                card.owner_id = req.body.owner_id;
                 card.save(function (err, card) {
                     if (err) {
                         sendJsonResponse(res, 404, err);

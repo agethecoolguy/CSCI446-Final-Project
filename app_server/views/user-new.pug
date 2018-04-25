@@ -14,12 +14,20 @@ block content
 				- if (error == "val")
 					.alert.alert-danger(role="alert") Check Required fields and try again.
 				.form-group
+					label.col-xs-10.col-sm-4.control-label(for="username") Username
+					.col-xs-12.col-sm-10
+						input#username.form-control(type="text" placeholder="Username" name="username")
+				.form-group
+					label.col-xs-10.col-sm-4.control-label(for="password") Password
+					.col-xs-12.col-sm-10
+						input#password.form-control(type="text" placeholder="User Password" name="password")
+				.form-group
+					label.col-xs-10.col-sm-4.control-label(for="email") Email
+					.col-xs-12.col-sm-10
+						input#email.form-control(type="text" placeholder="User Email" name="email")
+				.form-group
 					label.col-xs-10.col-sm-4.control-label(for="bio") Bio
 					.col-xs-12.col-sm-10
 						input#bio.form-control(type="text" placeholder="User Bio" name="bio")
-				.form-group
-					label.col-xs-10.col-sm-4.control-label(for="pass") Password*
-					.col-xs-12.col-sm-10
-						input#pass.form-control(type="text" placeholder="User Password" name="pass")
-					
+						
 				button.btn.btn-default.pull-left Submit User

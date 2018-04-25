@@ -34,7 +34,7 @@ module.exports.cardDetail = function(req, res) {
 /* GET 'New Card' form */
 module.exports.cardNew = function(req, res) {
 	var requestOptions, path;
-	path = '/api/card/new';
+	path = '/api/cards/new';
 	requestOptions = {
 		url: apiOptions.server + path,
 		method: "GET",
@@ -54,9 +54,9 @@ module.exports.doCardNew = function(req, res) {
 	var requestOptions, path, postdata;
 	path = "/api/cards/";
 	postdata = {
-		title: req.body.title,
+		name: req.body.name,
 		description: req.body.description,
-		creator: req.body.creator
+		owner_id: req.body.owner_id
 		//image: req.body.image
 	};
 	requestOptions = {
@@ -64,16 +64,16 @@ module.exports.doCardNew = function(req, res) {
 		method: "POST",
 		json: postdata
 	};
-	if (!postdata.title || !postdata.creator) {
-		res.redirect('/card/new?err=val');
+	if (!postdata.name || !postdata.owner_id) {
+		res.redirect('/cards/new?err=val');
 	} else {
 		request(
 			requestOptions,
 			function(err, response, body) {
 				if (response.statusCode === 201) {
-					res.redirect('/cards/' + postdata._id);
+					res.redirect('/cards/' + body._id);
 				} else if (response.statusCode === 400 && body.name && body.name === "ValidationError") {
-					res.redirect('/card/new?err=val');
+					res.redirect('/cards/new?err=val');
 				} else {
 					_showError(req, res, response.statusCode);
 				}

@@ -12,7 +12,7 @@ $('#cardCreate').submit(function (e) {
 
 $('#userNew').submit(function (e) {
 	$('.alert.alert-danger').hide();
-	if (!$('input#pass').val()) {
+	if (!$('input#password').val()) {
 		if ($('.alert.alert-danger').length) {
 			$('.alert.alert-danger').show();
 		} else {

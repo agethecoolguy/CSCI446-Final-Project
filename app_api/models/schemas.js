@@ -1,15 +1,16 @@
 var mongoose = require('mongoose');
 
 var userSchema = new mongoose.Schema({
-	uid: {type: mongoose.Schema.Types.ObjectId, default: mongoose.Types.ObjectId()},
-    pass: {type: String, required: true},
+    username: {type: String, required: true},
+	password: {type: String, required: true},
+	email: {type: String, required: true},
     bio: {type: String, default: "No Bio"}
 });
 
 var cardSchema = new mongoose.Schema({
-    title: {type: String, required: true},
+    name: {type: String, required: true},
     description: {type: String, required: true},
-    creator: {type: mongoose.Schema.Types.ObjectId}
+	owner_id: {type: mongoose.Schema.Types.ObjectId, required: true}
 });
 
 var offerSchema = new mongoose.Schema({

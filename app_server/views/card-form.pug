@@ -10,9 +10,9 @@ block content
 				- if (error == "val")
 					.alert.alert-danger(role="alert") All fields are required. Try again.
 				.form-group
-					label.col-xs-10.col-sm-4.control-label(for="title") Title
+					label.col-xs-10.col-sm-4.control-label(for="name") Name
 					.col-xs-12.col-sm-10
-						input#title.form-control(type="text" placeholder="Title of Card" name="title")
+						input#name.form-control(type="text" placeholder="Name of Card" name="name")
 				//
 					.form-group
 						label.col-xs-10.col-sm-4.control-label(for="image") Image
@@ -22,5 +22,9 @@ block content
 					label.col-xs-10.col-sm-4.control-label(for="description") Description
 					.col-xs-12.col-sm-10
 						input#description.form-control(type="text" placeholder="Card Description" name="description")
+				.form-group
+					label.col-xs-10.col-sm-4.control-label(for="owner_id") Your User ID
+					.col-xs-12.col-sm-10
+						input#owner_id.form-control(type="text" placeholder="User ID" name="owner_id")
 					
 				button.btn.btn-default.pull-left Submit Card

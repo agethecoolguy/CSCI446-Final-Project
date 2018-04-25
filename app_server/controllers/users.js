@@ -31,7 +31,7 @@ module.exports.userDetail = function(req, res) {
 /* GET 'New User' form */
 module.exports.userNew = function(req, res) {
 	var requestOptions, path;
-	path = '/api/user/new';
+	path = '/api/users/new';
 	requestOptions = {
 		url: apiOptions.server + path,
 		method: "GET",
@@ -51,25 +51,28 @@ module.exports.doUserNew = function(req, res) {
 	var requestOptions, path, postdata;
 	path = "/api/users/";
 	postdata = {
-		uid: req.body.uid,
-		pass: req.body.pass,
+		username: req.body.username,
+		password: req.body.password,
+		email: req.body.email,
 		bio: req.body.bio
 	};
+	console.log(postdata);
 	requestOptions = {
 		url: apiOptions.server + path,
 		method: "POST",
 		json: postdata
 	};
-	if (!postdata.pass) {
-		res.redirect('/user/new?err=val');
+	console.log("REQUESTOPTIONS: " + requestOptions.url)
+	if (!postdata.password) {
+		res.redirect('/users/new?err=val');
 	} else {
 		request(
 			requestOptions,
 			function(err, response, body) {
 				if (response.statusCode === 201) {
-					res.redirect('/users');
+					res.redirect('/users/' + body._id);
 				} else if (response.statusCode === 400 && body.name && body.name === "ValidationError") {
-					res.redirect('/user/new?err=val');
+					res.redirect('/users/new?err=val');
 				} else {
 					_showError(req, res, response.statusCode);
 				}
