@@ -20,6 +20,11 @@ module.exports.offersList = function (req, res) {
 };
 
 module.exports.offersCreate = function (req, res) {
+    if (!req.body.buyer_id || !req.body.seller_id || !req.body.requesting_cards || !req.body.offering_cards) {
+        sendJsonResponse(res, 400, {message: 'Missing required field.'});
+        return;
+    }
+
     requesting_cards = req.body.requesting_cards;
     offering_cards = req.body.offering_cards;
 
@@ -90,6 +95,7 @@ var validateOffer = function (offer, callback) {
     for (var i = 0; i < offer.requesting_cards.length; i++) {
         cardModel
             .findById(offer.requesting_cards[i])
+            .select('-image')
             .exec(function (err, card) {
                 if (!card) {
                     report({
@@ -114,6 +120,7 @@ var validateOffer = function (offer, callback) {
     for (var i = 0; i < offer.offering_cards.length; i++) {
         cardModel
             .findById(offer.offering_cards[i])
+            .select('-image')
             .exec(function (err, card) {
                 if (!card) {
                     report({

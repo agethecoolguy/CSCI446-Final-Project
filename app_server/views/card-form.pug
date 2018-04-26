@@ -6,7 +6,7 @@ block content
 			h1= pageHeader.title
 	.row
 		.col-xs-12
-			form.form-horizontal(action="", method="post", role="form")
+			form.form-horizontal(action="", method="post", role="form", enctype='multipart/form-data')
 				- if (error == "val")
 					.alert.alert-danger(role="alert") All fields are required. Try again.
 				.form-group
@@ -26,5 +26,10 @@ block content
 					label.col-xs-10.col-sm-4.control-label(for="owner_id") Your User ID
 					.col-xs-12.col-sm-10
 						input#owner_id.form-control(type="text" placeholder="User ID" name="owner_id")
+				
+				.form-group
+					label.col-xs-10.col-sm-4.control-label(for="image") Image
+					.col-xs-12.col-sm-10
+						input#image(type="file" placeholder="Image upload" name="image")
 					
 				button.btn.btn-default.pull-left Submit Card

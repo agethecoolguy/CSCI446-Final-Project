@@ -4,7 +4,7 @@ var cardModel = mongoose.model('Card');
 var offerModel = mongoose.model('Offer');
 
 module.exports.usersList = function (req, res) {
-    userModel.find({}, { pass: 0, bio: 0 }, function (err, users) {
+    userModel.find({}, { pass: 0, email: 0 }, function (err, users) {
         var usersList = [];
         users.forEach(function (user) {
             usersList.push(user);
@@ -21,6 +21,11 @@ module.exports.usersList = function (req, res) {
 };
 
 module.exports.usersCreate = function (req, res) {
+    if (!req.body.username || !req.body.password || !req.body.email) {
+        sendJsonResponse(res, 400, {message: 'Missing required field.'});
+        return;
+    }
+
     userModel.create({
 		username: req.body.username,
         password: req.body.password,
@@ -134,6 +139,7 @@ module.exports.usersCardsList = function (req, res) {
     if (req.params && req.params.userid) {
         cardModel
             .find({ owner_id: req.params.userid })
+            .select('-image')
             .exec(function (err, cards) {
                 if (cards.length == 0) {
                     sendJsonResponse(res, 404, {
