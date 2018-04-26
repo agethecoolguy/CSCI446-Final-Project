@@ -150,6 +150,27 @@ var getCardDetail = function (req, res, callback) {
 	);
 };
 
+/* Retrieves card information */
+var getCardList = function (req, res, callback) {
+	var requestOptions, path;
+	path = "/api/cards";
+	requestOptions = {
+		url: apiOptions.server + path,
+		method: "GET",
+		json: {}
+	};
+	request(
+		requestOptions,
+		function (err, response, body) {
+			if (response.statusCode === 200) {
+				callback(req, res, body);
+			} else {
+				_showError(req, res, response.statusCode);
+			}
+		}
+	);
+};
+
 /* Retrieves user information */
 var getUserInfo = function (req, res, callback) {
 	var requestOptions, path;
@@ -221,7 +242,8 @@ var renderBarterForm = function (req, res, responseBody) {
 			title: 'Barter for Card'
 		},
 		error: req.query.err,
-		card: responseBody
+		card: responseBody,
+		cards: responseBody.cards
 	});
 };
 

@@ -9,9 +9,23 @@ block content
 			form.form-horizontal(action="", method="post", role="form")
 				- if (error == "val")
 					.alert.alert-danger(role="alert") All fields are required. Try again.
+
 				.form-group
-					label.col-xs-10.col-sm-4.control-label(for="username") Username
+					p SellerID: #{card._id}, Card Name: #{card.name}
+					label.col-xs-10.col-sm-4.control-label(for="ownerid") Sellers ID.
 					.col-xs-12.col-sm-10
-						input#username.form-control(type="text" placeholder="Username" name="username")
-					
+						input#ownerid.form-control(type="text" value=card.owner_id name="sell_id" readonly)
+				.form-group
+					label.col-xs-10.col-sm-4.control-label(for="cardidsell") Seller Card ID.
+					.col-xs-12.col-sm-10
+						input#cardidsell.form-control(type="text" value=card._id name="card_sell_id" readonly)
+				.form-group
+					label.col-xs-10.col-sm-4.control-label(for="buyerid") Enter in your ID for authentication.
+					.col-xs-12.col-sm-10
+						input#buyerid.form-control(type="text" placeholder="User ID" name="buyer_id")
+				.form-group
+					label.col-xs-10.col-sm-4.control-label(for="cardidoffer") Enter the card ID that you would like to offer.
+					.col-xs-12.col-sm-10
+						input#cardidoffer.form-control(type="text" placeholder="Card ID" name="card_offer_id")
+
 				button.btn.btn-default.pull-left Submit Barter
