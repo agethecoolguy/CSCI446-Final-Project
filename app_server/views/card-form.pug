@@ -25,6 +25,8 @@ block content
 				.form-group
 					label.col-xs-10.col-sm-4.control-label(for="owner_id") Your User ID
 					.col-xs-12.col-sm-10
-						input#owner_id.form-control(type="text" placeholder="User ID" name="owner_id")
+						select#owner_id.form-control(type="text" placeholder="User ID" name="owner_id")
+							each user in users
+								option(value=user._id) #{user._id}
 					
 				button.btn.btn-default.pull-left Submit Card
