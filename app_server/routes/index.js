@@ -13,6 +13,7 @@ router.get('/cards/new', ctrlCards.cardNew);
 router.post('/cards/new', ctrlCards.doCardNew);
 router.get('/cards/:cardid', ctrlCards.cardDetail);
 router.get('/cards/:cardid/barter', ctrlCards.cardBarter);
+router.post('/cards/:cardid/barter', ctrlCards.doBarterNew);
 
 /* User pages */
 router.get('/users/', ctrlUser.userlist);
