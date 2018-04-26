@@ -10,7 +10,8 @@ var userSchema = new mongoose.Schema({
 var cardSchema = new mongoose.Schema({
     name: {type: String, required: true},
     description: {type: String, required: true},
-	owner_id: {type: mongoose.Schema.Types.ObjectId, required: true}
+    owner_id: {type: mongoose.Schema.Types.ObjectId, required: true},
+    image: { data: Buffer, contentType: String }
 });
 
 var offerSchema = new mongoose.Schema({

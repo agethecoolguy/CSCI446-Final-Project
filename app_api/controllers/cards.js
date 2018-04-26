@@ -1,10 +1,11 @@
 var mongoose = require('mongoose');
+var fs = require('fs');
 var userModel = mongoose.model('User');
 var cardModel = mongoose.model('Card');
 var offerModel = mongoose.model('Offer');
 
 module.exports.cardsList = function (req, res) {
-    cardModel.find({}, function(err, cards) {
+    cardModel.find({}, { image: 0 }, function(err, cards) {
         var cardsList = [];
         cards.forEach(function(card) {
             cardsList.push(card);
@@ -20,11 +21,24 @@ module.exports.cardsList = function (req, res) {
     });
 };
 
-module.exports.cardsCreate = function (req, res) {
+module.exports.cardsCreate = function (req, res) 
+{
+    if (!req.body.name || !req.body.description || !req.body.owner_id || !req.body.image_path) {
+        sendJsonResponse(res, 400, {message: 'Missing required field.'});
+        return;
+    }
+
+    data = fs.readFileSync(req.body.image_path);
+    contentType = 'image/png';
+
     cardModel.create({
         name: req.body.name,
         description: req.body.description,
-        owner_id: req.body.owner_id
+        owner_id: req.body.owner_id,
+        image: {
+            data: data,
+            contentType: contentType
+        }
     }, function (err, card) {
         if (err) {
             sendJsonResponse(res, 400, err);
@@ -38,6 +52,7 @@ module.exports.cardsReadOne = function (req, res) {
     if (req.params && req.params.cardid) {
         cardModel
             .findById(req.params.cardid)
+            .select('-image')
             .exec(function (err, card) {
                 if (!card) {
                     sendJsonResponse(res, 404, {
@@ -56,6 +71,31 @@ module.exports.cardsReadOne = function (req, res) {
         });
     }
 };
+
+module.exports.cardsReadImage = function (req, res) {
+    if (req.params && req.params.cardid) {
+        cardModel
+            .findById(req.params.cardid)
+            .select('image')
+            .exec(function (err, card) {
+                if (!card) {
+                    sendJsonResponse(res, 404, {
+                        "message": "cardid not found"
+                    });
+                    return;
+                } else if (err) {
+                    sendJsonResponse(res, 404, err);
+                    return;
+                }
+                res.contentType('image/png');
+                res.send(card.image.data);
+            });
+    } else {
+        sendJsonResponse(res, 404, {
+            "message": "No cardid in request"
+        });
+    }
+}
 
 module.exports.cardsUpdateOne = function (req, res) {
     if (!req.params.cardid) {
@@ -124,6 +164,7 @@ module.exports.cardsOffersListWhereRequested = function (req, res) {
     if (req.params && req.params.cardid) {
         offerModel
             .find({ requesting_cards: { $all: [req.params.cardid] }})
+            .select('-image')
             .exec(function (err, offers) {
                 if (offers.length == 0) {
                     sendJsonResponse(res, 404, {
@@ -147,6 +188,7 @@ module.exports.cardsOffersListWhereOffered = function (req, res) {
     if (req.params && req.params.cardid) {
         offerModel
             .find({ offering_cards: { $all: [req.params.cardid] } })
+            .select('-image')
             .exec(function (err, offers) {
                 if (offers.length == 0) {
                     sendJsonResponse(res, 404, {

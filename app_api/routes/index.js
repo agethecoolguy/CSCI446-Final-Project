@@ -31,6 +31,8 @@ router.get('/cards', ctrlCards.cardsList);
 router.post('/cards', ctrlCards.cardsCreate);
 // read single card
 router.get('/cards/:cardid', ctrlCards.cardsReadOne);
+// read card image
+router.get('/cards/:cardid/image', ctrlCards.cardsReadImage);
 // update single card
 router.put('/cards/:cardid', ctrlCards.cardsUpdateOne);
 // delete single card
