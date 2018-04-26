@@ -27,7 +27,7 @@ block content
 					.col-xs-12.col-sm-10
 						select#owner_id.form-control(type="text" placeholder="User ID" name="owner_id")
 							each user in users
-								option(value=user._id) #{user._id}
+								option(value=user._id) #{user.username}
 
 				.form-group
 					label.col-xs-10.col-sm-4.control-label(for="image") Image
