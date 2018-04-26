@@ -171,27 +171,6 @@ var getUserInfo = function (req, res, callback) {
 	);
 };
 
-/* Retrieves all user information */
-var getAllUserInfo = function(req, res, callback) {
-	var requestOptions, path;
-	path = "/api/users/";
-	requestOptions = {
-		url: apiOptions.server + path,
-		method: "GET",
-		json: {}
-	};
-	request (
-		requestOptions,
-		function(err, response, body) {
-			if (response.statusCode === 200) {
-				callback(req, res, body);
-			} else {
-				_showError(req, res, response.statusCode);
-			}
-		}
-	);
-};
-
 var renderHomepage = function(req, res, responseBody) {
 	var message;
 	if (!(responseBody instanceof Array)) {

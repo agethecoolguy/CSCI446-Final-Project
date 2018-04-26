@@ -2,6 +2,10 @@ body {
     font-size: 100%;
 }
 
+img.image {
+    max-width: 100px;
+}
+
 .navbar, a {
     color: rgb(70, 150, 240);
 }
