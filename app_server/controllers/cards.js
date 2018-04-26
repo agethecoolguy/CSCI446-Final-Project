@@ -124,7 +124,7 @@ module.exports.doCardNew = function (req, res) {
 
 /* GET 'Barter' form */
 module.exports.cardBarter = function (req, res) {
-	getUserInfo(req, res, function (req, res, responseData) {
+	getCardDetail(req, res, function (req, res, responseData) {
 		renderBarterForm(req, res, responseData);
 	});
 }
@@ -221,8 +221,7 @@ var renderBarterForm = function (req, res, responseBody) {
 			title: 'Barter for Card'
 		},
 		error: req.query.err,
-		cards: responseBody.cards,
-		user: responseBody
+		card: responseBody
 	});
 };
 
