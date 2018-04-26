@@ -2,6 +2,10 @@ var express = require('express');
 var router = express.Router();
 var ctrlCards = require('../controllers/cards');
 var ctrlUser = require('../controllers/users');
+var ctrlAbout = require('../controllers/about');
+
+/* About Page */
+router.get('/about', ctrlAbout.about);
 
 /* Card pages */
 router.get('/', ctrlCards.cardlist);
