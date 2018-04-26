@@ -7,9 +7,9 @@ var request = require('request');
 var apiOptions = {
 	server: "http://localhost:3000"
 };
-/*if (process.env.NODE_ENV === 'production') {
-	apiOptions.server = "https://rocky-spire-35249.herokuapp.com/"
-}*/
+if (process.env.NODE_ENV === 'production') {
+	apiOptions.server = "https://calm-savannah-80395.herokuapp.com/"
+}
 
 /* GET homepage */
 module.exports.cardlist = function (req, res) {

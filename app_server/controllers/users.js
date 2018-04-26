@@ -2,6 +2,9 @@ var request = require('request');
 var apiOptions = {
 	server: "http://localhost:3000"
 };
+if (process.env.NODE_ENV === 'production') {
+	apiOptions.server = "https://calm-savannah-80395.herokuapp.com/"
+}
 
 /* GET 'User List' page */
 module.exports.userlist = function(req, res) {
