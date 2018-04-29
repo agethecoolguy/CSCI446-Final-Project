@@ -15,5 +15,6 @@ block content
 						.col-xs-12.list-group-item
 							h4
 								a(href="/cards/" + card._id) #{card.name}
-								p Created by '#{card.owner_id}'
-								img.image(src='/api/cards/' + card._id + '/image')
+								p Owner ID: '#{card.owner_id}'
+								.card-image
+									img.image(src='/api/cards/' + card._id + '/image')
