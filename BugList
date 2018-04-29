@@ -7,5 +7,7 @@ The following were listed as bugs in the program.
 5. Can enter invalid email address.
 6. Have no way to get the ID of the card you are offering to barter so you can't currently barter.
 7. Pictures aren't resized
-8. Submitting form with password but no username causes a 400 error.
-9. User list shows all User IDs - no way of knowing which one I am.
+8. *FIXED* Submitting form with password but no username causes a 400 error.
+    Solution: Added html5 form input required.
+9. *FIXED* User list shows all User IDs - no way of knowing which one I am.
+    Solution: Added Name of the User along with ID.
