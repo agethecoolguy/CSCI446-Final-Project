@@ -1,0 +1,11 @@
+The following were listed as bugs in the program.
+
+1. Card Page says "undefined by undefined" in the header.
+2. Doesn't appear that any cards are displaying on the user pages.
+3. No way that I can tell how/if cards were exchanged.
+4. No error message from invalid card when entered when trying to barter.
+5. Can enter invalid email address.
+6. Have no way to get the ID of the card you are offering to barter so you can't currently barter.
+7. Pictures aren't resized
+8. Submitting form with password but no username causes a 400 error.
+9. User list shows all User IDs - no way of knowing which one I am.
