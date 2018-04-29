@@ -7,9 +7,9 @@ var request = require('request');
 var apiOptions = {
 	server: "http://localhost:3000"
 };
-/*if (process.env.NODE_ENV === 'production') {
-	apiOptions.server = "https://rocky-spire-35249.herokuapp.com/"
-}*/
+if (process.env.NODE_ENV === 'production') {
+	apiOptions.server = "https://calm-savannah-80395.herokuapp.com"
+}
 
 /* GET homepage */
 module.exports.cardlist = function (req, res) {
@@ -120,6 +120,42 @@ module.exports.doCardNew = function (req, res) {
 
 	console.log('Begin form parsing...');
 	return req.pipe(busboy);
+};
+
+/* POST 'New Barter' form */
+module.exports.doBarterNew  = function(req, res) {
+	var requestOptions, path, postdata;
+	path = "/api/offers";
+	postdata = {
+		buyer_id: req.body.buyer_id,
+		seller_id: req.body.sell_id,
+		requesting_cards: req.body.card_sell_id,
+		offering_cards: req.body.card_offer_id
+	};
+	console.log(postdata);
+	requestOptions = {
+		url: apiOptions.server + path,
+		method: "POST",
+		json: postdata
+	};
+	console.log("REQUESTOPTIONS: " + requestOptions.url)
+
+	if (!postdata.password) {
+		res.redirect('/');
+	} else {
+		request(
+			requestOptions,
+			function(err, response, body) {
+				if (response.statusCode === 201) {
+					res.redirect('/offers/' + body._id);
+				} else if (response.statusCode === 400 && body.name && body.name === "ValidationError") {
+					res.redirect('/offers/new?err=val');
+				} else {
+					_showError(req, res, response.statusCode);
+				}
+			}
+		);
+	}
 };
 
 /* GET 'Barter' form */
