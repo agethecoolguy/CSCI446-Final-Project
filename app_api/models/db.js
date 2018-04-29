@@ -2,9 +2,9 @@ var mongoose = require('mongoose');
 var gracefulShutdown;
 
 var dbURI = 'mongodb://localhost/Barter';
-if (process.env.NODE_ENV === 'production') {
-    dbURI = process.env.MONGOLAB_URI;
-}
+// if (process.env.NODE_ENV === 'production') {
+//     dbURI = process.env.MONGOLAB_URI;
+// }
 mongoose.connect(dbURI);
 
 var readLine = require ("readline");
