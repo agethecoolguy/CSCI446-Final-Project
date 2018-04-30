@@ -129,8 +129,8 @@ module.exports.doBarterNew  = function(req, res) {
 	postdata = {
 		buyer_id: req.body.buyer_id,
 		seller_id: req.body.sell_id,
-		requesting_cards: req.body.card_sell_id,
-		offering_cards: req.body.card_offer_id
+		requesting_cards: [req.body.card_sell_id],
+		offering_cards: [req.body.card_offer_id]
 	};
 	console.log(postdata);
 	requestOptions = {
@@ -140,9 +140,10 @@ module.exports.doBarterNew  = function(req, res) {
 	};
 	console.log("REQUESTOPTIONS: " + requestOptions.url)
 
-	if (!postdata.password) {
-		res.redirect('/');
-	} else {
+	//Probably don't need to check the password here.
+	// if (!postdata.password) {
+	// 	res.redirect('/');
+	// } else {
 		request(
 			requestOptions,
 			function(err, response, body) {
@@ -155,7 +156,7 @@ module.exports.doBarterNew  = function(req, res) {
 				}
 			}
 		);
-	}
+	//}
 };
 
 /* GET 'Barter' form */
