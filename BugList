@@ -1,6 +1,7 @@
 The following were listed as bugs in the program.
 
-1. Card Page says "undefined by undefined" in the header.
+1. *FIXED* Card Page says "undefined by undefined" in the header.
+    Solution: Stop using the strap line and instead use the name of the card.
 2. Doesn't appear that any cards are displaying on the user pages.
 3. No way that I can tell how/if cards were exchanged.
 4. No error message from invalid card when entered when trying to barter.
