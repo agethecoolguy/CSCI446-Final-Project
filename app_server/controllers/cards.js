@@ -148,7 +148,7 @@ module.exports.doBarterNew  = function(req, res) {
 			requestOptions,
 			function(err, response, body) {
 				if (response.statusCode === 201) {
-					res.redirect('/offers/' + body._id);
+					res.redirect('/offers');
 				} else if (response.statusCode === 400 && body.name && body.name === "ValidationError") {
 					res.redirect('/offers/new?err=val');
 				} else {
