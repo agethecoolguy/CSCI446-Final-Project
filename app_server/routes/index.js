@@ -19,6 +19,6 @@ router.post('/cards/:cardid/barter', ctrlCards.doBarterNew);
 router.get('/users/', ctrlUser.userlist);
 router.get('/users/new', ctrlUser.userNew);
 router.post('/users/new', ctrlUser.doUserNew);
-router.get('/users/:userid', ctrlUser.userDetail);
+router.get('/users/:userid', ctrlUser.userAndCardDetail);
 
 module.exports = router;

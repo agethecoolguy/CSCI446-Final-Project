@@ -31,6 +31,13 @@ module.exports.userDetail = function(req, res) {
 	});
 };
 
+/* GET 'User Detail + Cards' page */
+module.exports.userAndCardDetail = function(req, res) {
+	getUserAndCardInfo(req, res, function(req, res, responseData) {
+		renderUserDetail(req, res, responseData);
+	});
+};
+
 /* GET 'New User' form */
 module.exports.userNew = function(req, res) {
 	var requestOptions, path;
@@ -139,6 +146,44 @@ var getUserInfo = function(req, res, callback) {
 		function(err, response, body) {
 			if (response.statusCode === 200) {
 				callback(req, res, body);
+			} else {
+				_showError(req, res, response.statusCode);
+			}
+		}
+	);
+};
+
+
+/* Retrieves user information */
+var getUserAndCardInfo = function(req, res, callback) {
+	var requestOptions, path;
+	path = "/api/users/" + req.params.userid;
+	requestOptions = {
+		url: apiOptions.server + path,
+		method: "GET",
+		json: {}
+	};
+	request (
+		requestOptions,
+		function(err, response, body) {
+			if (response.statusCode === 200) {
+				path = '/api/cards';
+				requestOptions = {
+					url: apiOptions.server + path,
+					method: "GET",
+					json: {}
+				};
+				console.log("url " + requestOptions.url);
+				request(
+					requestOptions,
+					function (err2, response2, body2) {
+						//Here we need to make sure that the user._id is equal to the owner_id on the card.
+						body.cards = body2;
+						console.log(JSON.stringify(body));
+						body.cards = body2.filter(card => card.owner_id === body._id);
+						callback(req, res, body);
+					}
+				);
 			} else {
 				_showError(req, res, response.statusCode);
 			}
