@@ -2,9 +2,9 @@ var request = require('request');
 var apiOptions = {
 	server: "http://localhost:3000"
 };
-if (process.env.NODE_ENV === 'production') {
+/*if (process.env.NODE_ENV === 'production') {
 	apiOptions.server = "https://calm-savannah-80395.herokuapp.com"
-}
+}*/
 
 /* GET 'User List' page */
 module.exports.userlist = function(req, res) {
@@ -154,7 +154,7 @@ var getUserInfo = function(req, res, callback) {
 };
 
 
-/* Retrieves user information */
+/* Retrieves user and card information */
 var getUserAndCardInfo = function(req, res, callback) {
 	var requestOptions, path;
 	path = "/api/users/" + req.params.userid;
@@ -180,7 +180,9 @@ var getUserAndCardInfo = function(req, res, callback) {
 						//Here we need to make sure that the user._id is equal to the owner_id on the card.
 						body.cards = body2;
 						console.log(JSON.stringify(body));
-						body.cards = body2.filter(card => card.owner_id === body._id);
+						if (body2.length > 0) {
+							body.cards = body2.filter(card => card.owner_id === body._id);
+						}
 						callback(req, res, body);
 					}
 				);
