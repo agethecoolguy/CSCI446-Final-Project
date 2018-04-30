@@ -1,0 +1,16 @@
+extends layout
+
+block content
+	#banner.page-header
+		.row
+			.col-xs-12
+				h1= pageHeader.title
+				<br /><br />
+		.row
+			.col-xs-12
+				.error= message
+				.row.list-group
+					each offer in offers
+						.col-xs-12.list-group-item
+							h4 Buyer ID: #{offer.buyer_id},  Seller ID: #{offer.seller_id}, Requesting Cards: #{offer.requesting_cards}, Offering Cards: #{offer.offering_cards}
+							a(href="/offers/" + offer._id) Accept

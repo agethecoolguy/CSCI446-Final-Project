@@ -3,6 +3,7 @@ var router = express.Router();
 var ctrlCards = require('../controllers/cards');
 var ctrlUser = require('../controllers/users');
 var ctrlAbout = require('../controllers/about');
+var ctrlOffer = require('../controllers/offers');
 
 /* About Page */
 router.get('/about', ctrlAbout.about);
@@ -20,5 +21,8 @@ router.get('/users/', ctrlUser.userlist);
 router.get('/users/new', ctrlUser.userNew);
 router.post('/users/new', ctrlUser.doUserNew);
 router.get('/users/:userid', ctrlUser.userAndCardDetail);
+
+/* Offer pages */
+router.get('/offers', ctrlOffer.offerList);
 
 module.exports = router;
