@@ -24,5 +24,6 @@ router.get('/users/:userid', ctrlUser.userAndCardDetail);
 
 /* Offer pages */
 router.get('/offers', ctrlOffer.offerList);
+router.get('/offers/:offerid', ctrlOffer.offerAccept);
 
 module.exports = router;
