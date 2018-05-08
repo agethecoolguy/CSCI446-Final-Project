@@ -24,5 +24,6 @@ block content
 									.col-xs-12.list-group-item
 										p Title: #{card.name}
 										p Description: #{card.description}
+										p ID: #{card._id}
 										.card-image
 											img.image(src='/api/cards/' + card._id + '/image')

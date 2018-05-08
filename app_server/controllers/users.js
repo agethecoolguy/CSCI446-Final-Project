@@ -94,7 +94,7 @@ module.exports.doUserNew = function(req, res) {
 var renderUserList = function(req, res, responseBody) {
 	var message;
 	if (!(responseBody instanceof Array)) {
-		message = "API lookup error";
+		message = "No users found";
 		responseBody = [];
 	} else {
 		if (!responseBody.length) {

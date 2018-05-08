@@ -232,7 +232,7 @@ var getUserInfo = function (req, res, callback) {
 var renderHomepage = function(req, res, responseBody) {
 	var message;
 	if (!(responseBody instanceof Array)) {
-		message = "API lookup error";
+		message = "No cards found";
 		responseBody = [];
 	} else {
 		if (!responseBody.length) {

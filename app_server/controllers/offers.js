@@ -140,7 +140,7 @@ var deleteOffer = function(req, res, path) {
 var renderOfferList = function(req, res, responseBody) {
 	var message;
 	if (!(responseBody instanceof Array)) {
-		message = "API lookup error";
+		message = "No offers found";
 		responseBody = [];
 	} else {
 		if (!responseBody.length) {
